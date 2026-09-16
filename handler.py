@@ -61,16 +61,17 @@ def handler(job):
     with open("/workspace/workflow_api.json", "r") as f:
         workflow = json.load(f)
 
+  # =====================================================================
+    # 4. INJECT YOUR DATA INTO THE WORKFLOW
     # =====================================================================
-    # 4. INJECT YOUR DATA INTO THE WORKFLOW (YOU MUST UPDATE THESE IDs)
-    # =====================================================================
-    # Replace "1" with the Node ID of your "Load Image" node
+    # Node ID 8 is your "Load Image" node
     IMAGE_NODE_ID = "8" 
     workflow[IMAGE_NODE_ID]["inputs"]["image"] = image_filename
 
-    # Replace "2" with the Node ID of your Positive Prompt / TextEncode node
+    # Node ID 3 is your Positive Prompt node
     PROMPT_NODE_ID = "3" 
-    workflow[PROMPT_NODE_ID]["inputs"]["sample prompt"] = prompt_text
+    # Notice the key is "prompt", not "sample prompt"
+    workflow[PROMPT_NODE_ID]["inputs"]["prompt"] = prompt_text
     # =====================================================================
 
     # 5. Send the workflow to ComfyUI
