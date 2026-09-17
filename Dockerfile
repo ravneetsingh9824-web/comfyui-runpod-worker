@@ -24,7 +24,7 @@ RUN pip install --no-cache-dir -r /workspace/ComfyUI/requirements.txt
 COPY builder /workspace/builder
 
 # 7. Make setup.sh executable and run it to download the Qwen Rapid nodes and models
-RUN chmod +x /workspace/builder/setup.sh && /workspace/builder/setup.sh
+RUN sed -i 's/\r$//' /workspace/builder/setup.sh && chmod +x /workspace/builder/setup.sh && /workspace/builder/setup.sh
 
 # 8. Install Python packages needed for the RunPod API handler
 RUN pip install --no-cache-dir runpod requests websocket-client
