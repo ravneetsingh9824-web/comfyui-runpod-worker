@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y \
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git /workspace/ComfyUI
 
 # 5. Install ComfyUI's core Python requirements
+# 5. Upgrade PyTorch to 2.4+ before installing ComfyUI
+RUN pip install --upgrade torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
 RUN pip install --no-cache-dir -r /workspace/ComfyUI/requirements.txt
 
 # 6. Copy your builder folder (containing setup.sh) into the container
